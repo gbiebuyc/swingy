@@ -20,9 +20,8 @@ public class HeroController {
 		ArrayList<HeroModel> heroes = null;
 		try {
 			FileInputStream fis = new FileInputStream(this.saveFile);
-			ObjectInputStream ois=null;
 			try {
-				ois = new ObjectInputStream(fis);
+				ObjectInputStream ois = new ObjectInputStream(fis);
 				heroes = (ArrayList<HeroModel>) ois.readObject();
 				ois.close();
 				fis.close();
