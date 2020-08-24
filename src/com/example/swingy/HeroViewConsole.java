@@ -6,36 +6,66 @@ import java.util.Scanner;
 public class HeroViewConsole implements HeroView {
 	public HeroModel selectHero(ArrayList<HeroModel> heroes) {
 		System.out.println("Pick a hero:");
-		System.out.println("0 - New");
 		for (int i=0; i<heroes.size(); i++) {
 			HeroModel h = heroes.get(i);
 			System.out.printf("%d - %s, %s, LVL %d, %d XP, %d Attack, %d Defense, %d HP\n",
-					i+1, h.name, h.heroClass, h.level, h.xp, h.getAttackPoints(),
+					i, h.name, h.heroClass, h.level, h.xp, h.getAttackPoints(),
 					h.getDefensePoints(), h.getHitPoints());
 		}
+		System.out.println("n - New");
 		System.out.println("q - Quit");
 		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
+		int n = 0;
 		while (true) {
 			System.out.print("Your answer: ");
 			String[] lineSplited = scan.nextLine().split("\\s+");
-			if (lineSplited.length != 1) {
-				System.out.println("Bad input");
+			if (lineSplited.length != 1)
 				continue;
-			}
-			if (lineSplited[0].equalsIgnoreCase("q")) {
+			String answer = lineSplited[0];
+			if (answer.equalsIgnoreCase("q")) {
 				System.out.println("Bye");
 				System.exit(0);
 			}
+			if (answer.equalsIgnoreCase("n")) {
+				HeroModel newHero = this.createNewHero();
+				heroes.add(newHero);
+				return newHero;
+			}
 			try {
-				int n = Integer.parseInt(lineSplited[0]);
+				n = Integer.parseInt(answer);
 				break;
 			} catch (Exception e) {
-				System.out.println("Bad input");
 				continue;
 			}
 		}
-		return null;
+		return heroes.get(n);
+	}
+	
+	public HeroModel createNewHero() {
+		@SuppressWarnings("resource")
+		Scanner scan = new Scanner(System.in);
+		HeroModel newHero = new HeroModel();
+		System.out.println("You are creating a new hero.");
+		for (int i=0; i<HeroModel.heroClasses.length; i++) {
+			System.out.printf("%d - %s\n",  i, HeroModel.heroClasses[i]);
+		}
+		while (true) {
+			System.out.print("Pick a class: ");
+			String[] lineSplited = scan.nextLine().split("\\s+");
+			if (lineSplited.length != 1)
+				continue;
+			try {
+				int n = Integer.parseInt(lineSplited[0]);
+				newHero.heroClass = HeroModel.heroClasses[n];
+				break;
+			} catch (Exception e) {
+				continue;
+			}
+		}
+		System.out.print("Hero Name: ");
+		newHero.name = scan.nextLine();
+		return newHero;
 	}
 
 }

@@ -36,14 +36,6 @@ public class HeroController {
 		
 		HeroModel theHero = this.view.selectHero(heroes);
 		
-		if (theHero == null) {
-			theHero = new HeroModel();
-			theHero.name = "toto";
-			theHero.level = 42;
-			theHero.heroClass = HeroModel.heroClasses[0];
-			heroes.add(0, theHero);
-		}
-
 		// Save hero list to file.
 		try {
 			FileOutputStream fos = new FileOutputStream(this.saveFile);
