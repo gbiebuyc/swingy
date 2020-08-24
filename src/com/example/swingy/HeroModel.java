@@ -3,8 +3,8 @@ package com.example.swingy;
 @SuppressWarnings("serial")
 public class HeroModel implements java.io.Serializable {
 	public String name;
-	public int type = 0;
-	public static String[] types = {
+	public String heroClass;
+	public static String[] heroClasses = {
 			"Human",
 			"Dwarf",
 			"Night Elf",
@@ -25,5 +25,16 @@ public class HeroModel implements java.io.Serializable {
 		if (this.xp >= nextLvlRequiredXP)
 			this.level++;
 	}
+	
+	public int getAttackPoints() {
+		return 0;
+	}
+	
+	public int getDefensePoints() {
+		return 0;
+	}
 
+	public int getHitPoints() {
+		return 0;
+	}
 }

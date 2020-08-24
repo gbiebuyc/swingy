@@ -16,7 +16,7 @@ public class HeroController {
 	HeroController(HeroView view) {
 		this.view = view;
 
-		// Load heroes from file.
+		// Load hero list from file.
 		ArrayList<HeroModel> heroes = null;
 		try {
 			FileInputStream fis = new FileInputStream(this.saveFile);
@@ -40,10 +40,11 @@ public class HeroController {
 			theHero = new HeroModel();
 			theHero.name = "toto";
 			theHero.level = 42;
+			theHero.heroClass = HeroModel.heroClasses[0];
 			heroes.add(0, theHero);
 		}
 
-		// Save heroes to file.
+		// Save hero list to file.
 		try {
 			FileOutputStream fos = new FileOutputStream(this.saveFile);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
