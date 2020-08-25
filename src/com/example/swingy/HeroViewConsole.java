@@ -68,4 +68,24 @@ public class HeroViewConsole implements HeroView {
 		return newHero;
 	}
 
+	public void showMap(char[][] map) {
+		for (int i=0; i<map.length+2; i++)
+			System.out.print("#");
+		System.out.print('\n');
+		for (int i=0; i<map.length; i++) {
+			System.out.print('#');
+			for (int j=0; j<map.length; j++) {
+				if (map[i][j] == 'P')
+					System.out.print('P');
+				else
+					System.out.print(' ');
+			}
+			System.out.print("#\n");
+		}
+		for (int i=0; i<map.length+2; i++)
+			System.out.print("#");
+		System.out.print('\n');
+		
+		System.out.print("Your move (WASD/ZQSD): ");
+	}
 }

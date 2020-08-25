@@ -14,6 +14,7 @@ public class HeroController {
 	
 	@SuppressWarnings("unchecked")
 	HeroController(HeroView view) {
+		System.out.printf("\033[31mHello\033[0m World\n");
 		this.view = view;
 
 		// Load hero list from file.
@@ -35,6 +36,12 @@ public class HeroController {
 		}
 		
 		HeroModel theHero = this.view.selectHero(heroes);
+		
+		int mapSize = (theHero.level-1)*5+10-(theHero.level%2);;
+		int px=3, py=3;
+		char[][] map = new char[mapSize][mapSize];
+		map[py][px] = 'P';
+		this.view.showMap(map);
 		
 		// Save hero list to file.
 		try {

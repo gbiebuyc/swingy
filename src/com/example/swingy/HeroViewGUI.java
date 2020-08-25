@@ -10,5 +10,7 @@ public class HeroViewGUI implements HeroView {
 		return null;
 	}
 	
-
+	public void showMap(char[][] map) {
+		
+	}
 }
