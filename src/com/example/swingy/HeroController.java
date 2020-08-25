@@ -39,9 +39,16 @@ public class HeroController {
 		
 		int mapSize = (theHero.level-1)*5+10-(theHero.level%2);;
 		int px=3, py=3;
-		char[][] map = new char[mapSize][mapSize];
-		map[py][px] = 'P';
-		this.view.showMap(map);
+		while (px >= 0 && px < mapSize && py >= 0 && py < mapSize) {
+			char[][] map = new char[mapSize][mapSize];
+			map[py][px] = 'P';
+			switch (this.view.showMap(map)) {
+				case "Up": py--; break;
+				case "Down": py++; break;
+				case "Left": px--; break;
+				case "Right": px++; break;
+			}
+		}
 		
 		// Save hero list to file.
 		try {

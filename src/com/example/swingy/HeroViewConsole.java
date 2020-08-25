@@ -68,7 +68,7 @@ public class HeroViewConsole implements HeroView {
 		return newHero;
 	}
 
-	public void showMap(char[][] map) {
+	public String showMap(char[][] map) {
 		for (int i=0; i<map.length+2; i++)
 			System.out.print("#");
 		System.out.print('\n');
@@ -86,6 +86,25 @@ public class HeroViewConsole implements HeroView {
 			System.out.print("#");
 		System.out.print('\n');
 		
-		System.out.print("Your move (WASD/ZQSD): ");
+		@SuppressWarnings("resource")
+		Scanner scan = new Scanner(System.in);
+		while (true) {
+			System.out.print("Your move (WASD/ZQSD): ");
+			String[] lineSplited = scan.nextLine().split("\\s+");
+			if (lineSplited.length != 1)
+				continue;
+			switch(lineSplited[0].toUpperCase()) {
+				case "W":
+				case "Z":
+					return "Up";
+				case "A":
+				case "Q":
+					return "Left";
+				case "S":
+					return "Down";
+				case "D":
+					return "Right";
+			}
+		}
 	}
 }

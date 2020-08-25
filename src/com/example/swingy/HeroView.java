@@ -6,6 +6,6 @@ public interface HeroView {
 	
 	public HeroModel selectHero(ArrayList<HeroModel> heroes);
 	
-	public void showMap(char[][] map);
+	public String showMap(char[][] map);
 
 }
