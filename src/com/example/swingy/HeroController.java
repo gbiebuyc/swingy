@@ -39,9 +39,23 @@ public class HeroController {
 		
 		int mapSize = (theHero.level-1)*5+10-(theHero.level%2);;
 		int px=3, py=3;
+		ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+		int numEnemies = mapSize/2;
+		double enemyProbability = (1.0/(mapSize*mapSize)) * numEnemies;
+		for (int y=0; y<mapSize; y++) {
+			for (int x=0; x<mapSize; x++) {
+				if (Math.random() < enemyProbability) {
+					enemies.add(new Enemy(x, y));
+				}
+			}
+		}
+		
 		while (px >= 0 && px < mapSize && py >= 0 && py < mapSize) {
 			char[][] map = new char[mapSize][mapSize];
 			map[py][px] = 'P';
+			for (Enemy enemy : enemies) {
+				map[enemy.y][enemy.x] = 'E'; 
+			}
 			switch (this.view.showMap(map)) {
 				case "Up": py--; break;
 				case "Down": py++; break;

@@ -77,6 +77,8 @@ public class HeroViewConsole implements HeroView {
 			for (int j=0; j<map.length; j++) {
 				if (map[i][j] == 'P')
 					System.out.print('P');
+				else if (map[i][j] == 'E')
+					System.out.print('E');
 				else
 					System.out.print(' ');
 			}
