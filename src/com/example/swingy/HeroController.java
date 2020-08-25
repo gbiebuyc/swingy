@@ -40,11 +40,11 @@ public class HeroController {
 		int mapSize = (theHero.level-1)*5+10-(theHero.level%2);;
 		int px=3, py=3;
 		ArrayList<Enemy> enemies = new ArrayList<Enemy>();
-		int numEnemies = mapSize/2;
-		double enemyProbability = (1.0/(mapSize*mapSize)) * numEnemies;
 		for (int y=0; y<mapSize; y++) {
 			for (int x=0; x<mapSize; x++) {
-				if (Math.random() < enemyProbability) {
+				if (x==px && y==py)
+					continue;
+				if (Math.random() < 0.2) {
 					enemies.add(new Enemy(x, y));
 				}
 			}
